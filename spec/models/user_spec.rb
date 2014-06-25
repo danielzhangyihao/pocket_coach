@@ -16,9 +16,21 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
+  it { should respond_to(:student) }
+
 
 
   it { should be_valid }
+  it { should be_student }
+
+  describe "with admin student set to 'false'" do
+    before do
+      @user.save!
+      @user.toggle!(:student)
+    end
+
+    it { should_not be_student }
+  end
 
   describe "when name is not present" do
     before { @user.name = " " }
