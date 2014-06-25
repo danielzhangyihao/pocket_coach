@@ -99,10 +99,38 @@ p {
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
+    color: black;
     text-decoration: none;
   }
 }
+
+
+
+.navbar-fixed-top.navbar-inverse{
+  li{
+    a{
+      color:white;
+      &:hover {
+      color: $grayDarker;
+    }
+    }
+  }
+  ul{.dropdown-menu{
+    li{
+      a{
+        color:black;
+        &:hover {
+         color: white;
+       }
+      }
+    }
+  }
+}
+}
+
+
+
+
 
 /* footer */
 
