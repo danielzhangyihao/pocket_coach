@@ -135,7 +135,9 @@ p {
 /* footer */
 
 footer {
+  
   margin-top: 80px;
+  /*clear: both;*/
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
@@ -241,4 +243,18 @@ input {
 
 .instructorType{
   float: left;
+}
+
+/* static page */
+.title-border{
+  font-size: 19px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  text-align:center;
+  text-decoration:underline;
+
+}
+
+#aboutus{
+  margin-top: 50px;
 }

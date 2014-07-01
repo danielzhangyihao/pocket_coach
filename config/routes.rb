@@ -14,6 +14,7 @@ SampleApp::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/coach',  to:'users#coach', via: 'get'
   match 'users/(:id)/coach' ,  to:'users#coach', via: 'get'
+  
 
 
   # match '/coach', to:'users#coach', via: 'get'
