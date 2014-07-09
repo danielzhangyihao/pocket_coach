@@ -60,9 +60,6 @@ describe "instructor page" do
   end
 
 
- 
-
-
 
 
 # test for index page
@@ -132,7 +129,6 @@ describe "profile page" do
     it { should have_content(user.name) }
     it { should have_title(user.name) }
     it { should have_content('Student') }
-
   end
 
   describe "signup page" do

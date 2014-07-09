@@ -13,10 +13,4 @@ FactoryGirl.define do
       admin true
     end
   end
-
-  factory :identity do
-    school_facility "Mike Murphy Baseball"
-    user
-    position "pitcher"
-  end
 end

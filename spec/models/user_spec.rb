@@ -18,7 +18,6 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:student) }
   it { should respond_to(:admin) }
-  it { should respond_to(:identity) }
 
 
 
@@ -129,26 +128,4 @@ describe User do
     its(:remember_token) { should_not be_blank }
   end
 
-
-  describe "identity associations" do
-
-    before { @user.save }
-    let!(:user_identity) do
-      FactoryGirl.create(:identity, user: @user, created_at: 1.day.ago)
-    end
-    
-
-    it "should have the right identities in the right order" do
-      expect(@user.identity).to eq user_identity
-    end
-
-    it "should destroy associated identities" do
-      a_identity = @user.identity
-      @user.destroy
-      expect(a_identity).not_to eq nil
-      expect(Identity.where(id: a_identity.id)).to be_empty
-      
-    end
-
-  end
 end
