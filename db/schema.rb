@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702072232) do
+ActiveRecord::Schema.define(version: 20140710045639) do
 
   create_table "identities", force: true do |t|
     t.string   "school_facility"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20140702072232) do
 
   add_index "identities", ["position"], name: "index_identities_on_position"
   add_index "identities", ["user_id", "school_facility"], name: "index_identities_on_user_id_and_school_facility"
+
+  create_table "instructors", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest"
+  end
+
+  add_index "instructors", ["email"], name: "index_instructors_on_email", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"

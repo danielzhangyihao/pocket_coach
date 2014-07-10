@@ -8,11 +8,5 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
-  def account_type(user)
-  	if user.student
-  		"Student"
-  	else
-  		"Instructor"
-  	end
-  end
+  
 end
