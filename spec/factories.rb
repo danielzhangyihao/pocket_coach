@@ -5,10 +5,6 @@ FactoryGirl.define do
     password "foobar"
     password_confirmation "foobar"
 
-    factory :instructor do
-      student false
-    end
-
     factory :admin do
       admin true
     end

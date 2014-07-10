@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update, :destroy, :coach]
+  before_action :signed_in_user, only: [:edit, :update, :destroy, :index]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:destroy, :index]
+  before_action :admin_user,     only: [:destroy]
 
   def new
     @user = User.new
@@ -14,9 +14,9 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def coach
-    @users=User.where(:student => false).paginate(page: params[:page])
-  end
+  #def coach
+   # @users=User.where(:student => false).paginate(page: params[:page])
+ # end
 
   def index
     @users=User.paginate(page: params[:page])
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :student)
+                                   :password_confirmation)
     end
     
     def signed_in_user

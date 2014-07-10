@@ -8,16 +8,16 @@ describe "instructor page" do
     let(:user) { FactoryGirl.create(:user) }
     before(:each) do
       sign_in user
-      visit coach_path
+      visit users_path
     end
 
-    it { should have_title('Instructors') }
-    it { should have_content('All Instructors') }
+    it { should have_title('All users') }
+    it { should have_content('All users') }
     it { should_not have_link('delete') }
     
     describe "pagination" do
 
-      before(:all) { 31.times { FactoryGirl.create(:instructor) } }
+      before(:all) { 31.times { FactoryGirl.create(:user) } }
       after(:all)  { User.delete_all }
 
       it { should have_selector('div.pagination') }
@@ -41,14 +41,14 @@ describe "instructor page" do
         
         before do
           sign_in admin
-          visit coach_path
+          visit users_path
         end
         
 
-        before(:all) { 31.times { FactoryGirl.create(:instructor) } }
+        before(:all) { 31.times { FactoryGirl.create(:user) } }
         after(:all)  { User.delete_all }
 
-        it { should have_link('delete', href: user_path(User.where(:student => false).first)) }
+        it { should have_link('delete', href: user_path(User.first)) }
         it "should be able to delete another user" do
           expect do
             click_link('delete', match: :first)
@@ -70,7 +70,7 @@ describe "index" do
      sign_in user
    end
 
-   it { should_not have_link('Users', href: users_path) }
+   it { should have_link('Users', href: users_path) }
   end
 
   describe "sign in a admin" do
@@ -128,7 +128,7 @@ describe "profile page" do
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
-    it { should have_content('Student') }
+    
   end
 
   describe "signup page" do
@@ -156,7 +156,7 @@ describe "profile page" do
         fill_in "Email",        with: "user@example.com"
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
-        choose  "user_student_false"
+        
       end
 
       it "should create a user" do
@@ -171,8 +171,6 @@ describe "profile page" do
         it { should have_link('Sign out') }
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-        it { should have_content('Instructor') }
-        specify { expect(user.reload.student).to eq false }
       end
    end
 
@@ -182,7 +180,6 @@ describe "with valid information" do
         fill_in "Email",        with: "user@example.com"
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
-        choose  "user_student_true"
       end
 
       it "should create a user" do
@@ -197,8 +194,6 @@ describe "with valid information" do
         it { should have_link('Sign out') }
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-        it { should have_content('Student') }
-        specify { expect(user.reload.student).to eq true }
       end
     end
   end
