@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Instructor do
   before { @instructor = Instructor.new(name: "Example User", email: "user@example.com",
-  	password: "foobar", password_confirmation: "foobar")}
+  	password: "foobar", password_confirmation: "foobar", facility:"MMB")}
 
   subject { @instructor }
 
@@ -12,8 +12,17 @@ describe Instructor do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:companyadmin) }
+  it { should respond_to(:facility)}
 
-  it { should be_valid }
+  describe "with companyadmin attribute set to 'true'" do
+    before do
+      @instructor.save!
+      @instructor.toggle!(:companyadmin)
+    end
+
+    it { should be_companyadmin }
+  end
 
   describe "when name is not present" do
     before { @instructor.name = " " }
@@ -22,6 +31,11 @@ describe Instructor do
 
   describe "when email is not present" do
     before { @instructor.email = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when email is not present" do
+    before { @instructor.facility = " " }
     it { should_not be_valid }
   end
 

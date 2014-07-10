@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140710045639) do
+ActiveRecord::Schema.define(version: 20140710071733) do
 
   create_table "identities", force: true do |t|
     t.string   "school_facility"
@@ -30,9 +30,12 @@ ActiveRecord::Schema.define(version: 20140710045639) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.boolean  "companyadmin",    default: false
+    t.string   "facility"
   end
 
   add_index "instructors", ["email"], name: "index_instructors_on_email", unique: true
+  add_index "instructors", ["facility"], name: "index_instructors_on_facility"
 
   create_table "users", force: true do |t|
     t.string   "name"

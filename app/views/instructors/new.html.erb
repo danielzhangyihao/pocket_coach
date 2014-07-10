@@ -6,8 +6,19 @@
   <%= form_for(@instructor) do |f| %>
     <%= render 'shared/instructor_error_messages' %>
 
+
+      <%= f.radio_button :companyadmin,  true %>
+      <%= f.label :companyadmin, "Create" %>
+     
+      <%= f.radio_button :companyadmin,  false %>
+      <%= f.label :companyadmin, "Add" %>
+
       <%= f.label :name %>
       <%= f.text_field :name %>
+
+      <%= f.label :facility, "Name of Business/facility" %>
+      <%= f.text_field :facility %>
+
 
       <%= f.label :email %>
       <%= f.text_field :email %>
@@ -17,6 +28,7 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
+
 
       
 

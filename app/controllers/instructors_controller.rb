@@ -23,6 +23,6 @@ class InstructorsController < ApplicationController
 
     def instructor_params
       params.require(:instructor).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :companyadmin, :facility)
     end
 end

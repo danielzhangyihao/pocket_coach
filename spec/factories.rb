@@ -15,5 +15,10 @@ FactoryGirl.define do
     email    "michael@example.com"
     password "foobar"
     password_confirmation "foobar"
+    facility "MMB"
+
+    factory :companyadmin do
+    	companyadmin true
+    end
   end
 end

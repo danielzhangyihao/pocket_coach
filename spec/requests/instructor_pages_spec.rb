@@ -37,11 +37,15 @@ describe "Instructor pages" do
         fill_in "Email",        with: "user@example.com"
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
+        fill_in "Name of Business/facility", with:"MMB"
+        choose("instructor_companyadmin_false")
       end
 
       it "should create a instructor" do
         expect { click_button submit }.to change(Instructor, :count).by(1)
       end
+
+
     end
   end
 end
