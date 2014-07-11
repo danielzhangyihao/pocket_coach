@@ -38,11 +38,33 @@ describe "Instructor pages" do
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
         fill_in "Name of Business/facility", with:"MMB"
-        choose("instructor_companyadmin_false")
+        choose("instructor_companyadmin_true")
       end
 
       it "should create a instructor" do
         expect { click_button submit }.to change(Instructor, :count).by(1)
+      end
+
+
+    end
+
+
+    describe "with valid information" do
+      before do
+        choose("instructor_companyadmin_false")
+
+        fill_in "Name",         with: "Example User"
+        fill_in "Email",        with: "user@example.com"
+        fill_in "Password",     with: "foobar"
+        fill_in "Confirmation", with: "foobar"
+        select( 'Mare', :from => :facility)
+        
+        
+      end
+
+      it "should create a instructor" do
+        expect { click_button submit }.to change(Instructor, :count).by(1)
+        
       end
 
 
