@@ -1,0 +1,10 @@
+<% provide(:title, 'All instructors') %>
+<h1>All instructors</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <%= render @instructors %>
+</ul>
+
+<%= will_paginate %>

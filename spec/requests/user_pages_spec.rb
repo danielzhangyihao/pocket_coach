@@ -4,7 +4,7 @@ describe "User pages" do
 
   subject { page }
 
-describe "instructor page" do
+describe "user page" do
     let(:user) { FactoryGirl.create(:user) }
     before(:each) do
       sign_in user
@@ -71,6 +71,9 @@ describe "index" do
    end
 
    it { should have_link('Users', href: users_path) }
+   it { should have_link('Instructors', href: instructors_path) }
+
+
   end
 
   describe "sign in a admin" do

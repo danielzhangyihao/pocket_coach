@@ -14,6 +14,8 @@ describe Instructor do
   it { should respond_to(:authenticate) }
   it { should respond_to(:companyadmin) }
   it { should respond_to(:facility)}
+  it { should respond_to(:remember_token) }
+  
 
   describe "with companyadmin attribute set to 'true'" do
     before do
@@ -107,6 +109,11 @@ describe Instructor do
       it { should_not eq instructor_for_invalid_password }
       specify { expect(instructor_for_invalid_password).to be_false }
     end
+  end
+
+  describe "remember token" do
+    before { @instructor.save }
+    its(:remember_token) { should_not be_blank }
   end
 end
 
