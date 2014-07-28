@@ -10,6 +10,7 @@ class Instructor < ActiveRecord::Base
    has_secure_password
    validates :password, length: { minimum: 6 }
    validates :facility,  presence: true
+   belongs_to :company
 
 
 
