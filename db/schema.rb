@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140728063116) do
     t.datetime "updated_at"
   end
 
-  add_index "companies", ["name"], name: "index_companies_on_name"
+  add_index "companies", ["name"], name: "index_companies_on_name", unique: true
 
   create_table "identities", force: true do |t|
     t.string   "school_facility"
