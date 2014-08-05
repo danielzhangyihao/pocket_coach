@@ -1,7 +1,7 @@
 class InstructorsController < ApplicationController
   before_action :signed_in_user, only: [:edit, :update, :destroy, :index]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:destroy]
+  before_action :admin_panel_delete,     only: [:destroy]
 
   def show
     @instructor = Instructor.find(params[:id])
@@ -66,7 +66,7 @@ class InstructorsController < ApplicationController
    def destroy
     Instructor.find(params[:id]).destroy
     flash[:success] = "Instructor deleted."
-    redirect_to instructors_url
+    redirect_to facility_admin_url
    end
 
   private
@@ -97,5 +97,10 @@ class InstructorsController < ApplicationController
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def admin_panel_delete
+      redirect_to(root_url) unless current_user.admin? || current_user.companyadmin?
+
     end
 end

@@ -21,7 +21,8 @@ module SessionsHelper
        else
          @current_user ||= Instructor.find_by(remember_token: remember_token)
        end  
-    end
+    end 
+
 
     def current_user?(user)
     user == current_user

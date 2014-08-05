@@ -1,0 +1,2 @@
+module FacilityAdmin::DashboardHelper
+end

@@ -10,7 +10,10 @@ SampleApp::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/instructorsignup',  to: 'instructors#new',   via: 'get'
-  
+  namespace :facility_admin do
+    get '', to: 'dashboard#index', as: '/'
+    resources :instructors, only: [:edit, :destroy]
+  end
 
   # match '/coach', to:'users#coach', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
