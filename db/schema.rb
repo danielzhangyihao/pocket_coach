@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728063116) do
+ActiveRecord::Schema.define(version: 20140728183053) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140728063116) do
     t.string   "facility"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
+    t.integer  "company_id"
   end
 
   add_index "instructors", ["email"], name: "index_instructors_on_email", unique: true

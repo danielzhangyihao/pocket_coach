@@ -11,8 +11,8 @@ class Instructor < ActiveRecord::Base
    validates :password, length: { minimum: 6 }
    validates :facility,  presence: true
    belongs_to :company
+   validates :company_id, presence: true
    
-   accepts_nested_attributes_for :company, reject_if: :all_blank
 
 
 

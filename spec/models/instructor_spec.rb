@@ -1,8 +1,12 @@
 require 'spec_helper'
 
 describe Instructor do
-  before { @instructor = Instructor.new(name: "Example User", email: "user@example.com",
-  	password: "foobar", password_confirmation: "foobar", facility:"MMB")}
+  before { @company=Company.create(name:"NBA")
+           @instructor = @company.instructors.build(name: "Example User", email: "user@example.com",
+  	       password: "foobar", password_confirmation: "foobar", facility:"NBA")
+           
+
+  }
 
   subject { @instructor }
 
@@ -15,6 +19,7 @@ describe Instructor do
   it { should respond_to(:companyadmin) }
   it { should respond_to(:facility)}
   it { should respond_to(:remember_token) }
+  it { should respond_to(:company_id)}
   
 
   describe "with companyadmin attribute set to 'true'" do
@@ -45,6 +50,12 @@ describe Instructor do
     before { @instructor.name = "a" * 51 }
     it { should_not be_valid }
   end
+
+  describe "when company_id is not present" do
+    before{ @instructor.company_id=nil}
+    it { should_not be_valid}
+  end
+
 
   describe "when email format is invalid" do
     it "should be invalid" do
@@ -79,8 +90,10 @@ describe Instructor do
 
   describe "when password is not present" do
     before do
-      @instructor = Instructor.new(name: "Example User", email: "user@example.com",
-                       password: " ", password_confirmation: " ")
+           @company=Company.create(name:"NBA")
+           @instructor = @company.instructors.build(name: "Example User", email: "user@example.com",
+           password: " ", password_confirmation: " ", facility:"NBA")
+      
     end
     it { should_not be_valid }
   end

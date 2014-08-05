@@ -9,6 +9,7 @@ class InstructorsController < ApplicationController
 
   def new
   	@instructor = Instructor.new
+    @companies= Company.all
   end
 
   def edit
@@ -33,21 +34,40 @@ class InstructorsController < ApplicationController
 
 
   def create
-    @instructor = Instructor.new(instructor_params)
-    if @instructor.save
-      sign_in @instructor
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @instructor
-    else
-      render 'new'
+    
+    company=Company.find_by_name(params[:instructor][:facility])
+    
+    if company 
+      @instructor=company.instructors.build(instructor_params)
+      if @instructor.save
+         sign_in @instructor
+         flash[:success] = "Welcome to the Sample App!"
+         redirect_to @instructor
+      else
+         @companies= Company.all
+         render 'new'
+      end
+    else 
+      @company=Company.create(name: params[:instructor][:facility])
+      @instructor=@company.instructors.build(instructor_params)
+      if @instructor.save
+         sign_in @instructor
+         flash[:success] = "Welcome to the Sample App!"
+         redirect_to @instructor
+      else
+         @companies= Company.all
+         render 'new'
+      end
+        
     end
   end
-
+    
+ 
    def destroy
     Instructor.find(params[:id]).destroy
     flash[:success] = "Instructor deleted."
     redirect_to instructors_url
-  end
+   end
 
   private
 

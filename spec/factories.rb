@@ -15,7 +15,9 @@ FactoryGirl.define do
     sequence(:email) { |n| "person_#{n}@example.com"}
     password "foobar"
     password_confirmation "foobar"
-    facility "MMB"
+    company {FactoryGirl.create(:company)}
+    facility "CBA"
+
 
 
     factory :companyadmin do
@@ -23,9 +25,17 @@ FactoryGirl.define do
     end
 
     factory :admin2 do
+      sequence(:name)  { |n| "admin3 #{n}" }
+      sequence(:email) { |n| "admin3_#{n}@example.com"}
+      facility "ADMIN"
       admin true
     end
 
 
+
   end
+
+    factory :company do
+       sequence(:name)  { |n| "Companyy #{n}" }
+    end
 end

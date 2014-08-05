@@ -22,7 +22,9 @@
       
       <div id="add-company">
       <%= f.label :facility, "Search for Business/facility" %>
-      <%= f.select :facility, options_for_select([['Please choose a company'], ['Mare'], ['Stallion'], ['Gelding']],:include_blank => true, :disabled => ['Please choose a company'],  :selected => ['Please choose a company'] ) %>
+      
+      <%= f.select :facility, options_for_select([['Please choose a company']]+
+      @companies.collect {|r| [r.name] } , :include_blank => true, :disabled => ['Please choose a company'],  :selected => ['Please choose a company'] ) %>
       </div>
 
       <%= f.label :email %>
