@@ -129,8 +129,8 @@ describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
-    it { should have_content(user.name) }
-    it { should have_title(user.name) }
+    it { should_not have_content(user.name) }
+    it { should_not have_title(user.name) }
     
   end
 

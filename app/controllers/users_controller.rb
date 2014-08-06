@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update, :destroy, :index]
+  before_action :signed_in_user, only: [:edit, :update, :destroy, :index, :show]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy]
 
   def new
     @user = User.new
+    
   end
 
   def show

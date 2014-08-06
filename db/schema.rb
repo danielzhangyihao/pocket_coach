@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728183053) do
+ActiveRecord::Schema.define(version: 20140805092451) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 20140728183053) do
   end
 
   add_index "companies", ["name"], name: "index_companies_on_name", unique: true
+
+  create_table "company_infos", force: true do |t|
+    t.text     "description"
+    t.string   "address"
+    t.integer  "company_id"
+    t.integer  "telephone"
+    t.string   "email"
+    t.decimal  "price",       precision: 6, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "company_infos", ["company_id"], name: "index_company_infos_on_company_id"
+  add_index "company_infos", ["email"], name: "index_company_infos_on_email"
 
   create_table "identities", force: true do |t|
     t.string   "school_facility"
@@ -31,6 +45,16 @@ ActiveRecord::Schema.define(version: 20140728183053) do
 
   add_index "identities", ["position"], name: "index_identities_on_position"
   add_index "identities", ["user_id", "school_facility"], name: "index_identities_on_user_id_and_school_facility"
+
+  create_table "instructor_infos", force: true do |t|
+    t.text     "description"
+    t.decimal  "price",         precision: 6, scale: 2
+    t.integer  "instructor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "instructor_infos", ["instructor_id", "price"], name: "index_instructor_infos_on_instructor_id_and_price"
 
   create_table "instructors", force: true do |t|
     t.string   "name"
@@ -48,6 +72,26 @@ ActiveRecord::Schema.define(version: 20140728183053) do
   add_index "instructors", ["email"], name: "index_instructors_on_email", unique: true
   add_index "instructors", ["facility"], name: "index_instructors_on_facility"
   add_index "instructors", ["remember_token"], name: "index_instructors_on_remember_token"
+
+  create_table "user_infos", force: true do |t|
+    t.text     "description"
+    t.integer  "feet",        limit: 1
+    t.integer  "inches",      limit: 2
+    t.decimal  "weight",                precision: 5, scale: 2
+    t.string   "school"
+    t.integer  "year",        limit: 4
+    t.string   "position"
+    t.string   "team"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_infos", ["position"], name: "index_user_infos_on_position"
+  add_index "user_infos", ["school"], name: "index_user_infos_on_school"
+  add_index "user_infos", ["team"], name: "index_user_infos_on_team"
+  add_index "user_infos", ["user_id"], name: "index_user_infos_on_user_id"
+  add_index "user_infos", ["year"], name: "index_user_infos_on_year"
 
   create_table "users", force: true do |t|
     t.string   "name"

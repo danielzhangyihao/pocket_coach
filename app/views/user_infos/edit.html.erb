@@ -1,0 +1,39 @@
+<% provide(:title, 'Create user info') %>
+<h1>Create user info</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user_info) do |f| %>
+    <%= render 'shared/user_info_error_messages' %>
+
+      <%= f.label :school %>
+      <%= f.text_field :school %>
+
+      <%= f.label :year %>
+      <%= f.number_field :year, :step => 1 %>
+
+      <%= f.label :position %>
+      <%= f.text_field :position %>
+
+      <%= f.label :team, "Current team" %>
+      <%= f.text_field :team %>
+
+      <%= f.label :weight %>
+      <%= f.number_field :weight , :step => 0.01 %>
+
+      <%= f.label :feet %>
+      <%= f.number_field :feet, :step => 1 %>
+
+      <%= f.label :inches %>
+      <%= f.number_field :inches , :step => 1 %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, placeholder: "more info about me..."%>
+
+
+      
+
+      <%= f.submit "Create my info", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

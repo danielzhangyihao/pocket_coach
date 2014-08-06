@@ -7,5 +7,16 @@
         <%= @user.name %> 
       </h1>
     </section>
+    <% if current_student? %>
+        <% if current_user?(@user) %>
+            <% if user_has_info? %>
+            <%= link_to "Update user info", edit_user_info_path, class: "btn btn-large btn-primary" %>
+            <% else %>
+            <%= link_to "Create user info", new_user_info_path, class: "btn btn-large btn-primary" %>
+            <% end %>
+        <% end %>
+    <% end %>
+
+    
   </aside>
 </div>

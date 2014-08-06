@@ -12,6 +12,7 @@ class Instructor < ActiveRecord::Base
    validates :facility,  presence: true
    belongs_to :company
    validates :company_id, presence: true
+   has_one:instructor_info, dependent: :destroy
    
 
 

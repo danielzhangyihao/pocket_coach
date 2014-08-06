@@ -1,5 +1,9 @@
 SampleApp::Application.routes.draw do
-  resources :users 
+  resources :users do
+    member do
+      resources :user_infos, only: [:edit, :new, :create,:update]
+    end
+  end 
   resources :instructors 
   resources :sessions, only: [:new, :create, :destroy]
   root  'static_pages#home'
@@ -10,6 +14,7 @@ SampleApp::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/instructorsignup',  to: 'instructors#new',   via: 'get'
+  
   namespace :facility_admin do
     get '', to: 'dashboard#index', as: '/'
     resources :instructors, only: [:edit, :destroy]

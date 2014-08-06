@@ -8,5 +8,33 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
+  def user_has_info?
+      if current_user.user_info
+        true
+      else
+        false
+      end 
+    end 
+
+    def current_user
+       remember_token = User.digest(cookies[:remember_token])
+       if User.find_by(remember_token: remember_token)
+         @current_user ||= User.find_by(remember_token: remember_token)
+       else
+         @current_user ||= Instructor.find_by(remember_token: remember_token)
+       end  
+    end 
+
+    def current_student? 
+      if current_user.attributes['facility']
+        false
+      else 
+        true
+      end
+    end
+
+    def current_user?(user)
+      user == current_user
+    end
   
 end
