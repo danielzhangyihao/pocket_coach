@@ -10,7 +10,25 @@
        <h2>
       	<%= @instructor.facility %> 
       </h2>
+
+      <% if @instructor.instructor_info %>
+        <h6>
+        $ <%= @instructor.instructor_info.price %>
+        </h6>
+        <h6>
+        <%= @instructor.instructor_info.description %>
+        </h6>
+        <% end %>
     </section>
+    <% if !current_student? %>
+        <% if current_user?(@instructor) %>
+            <% if instructor_has_info? %>
+            <%= link_to "Update instructor info", edit_instructor_info_path, class: "btn btn-large btn-primary" %>
+            <% else %>
+            <%= link_to "Create instructor info", new_instructor_info_path, class: "btn btn-large btn-primary" %>
+            <% end %>
+        <% end %>
+    <% end %>
     
   </aside>
 

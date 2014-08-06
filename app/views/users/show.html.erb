@@ -6,6 +6,24 @@
         <%= gravatar_for @user %>
         <%= @user.name %> 
       </h1>
+        <% if @user.user_info %>
+        <h6>
+        <%= @user.user_info.school %>
+        <%= @user.user_info.year %>
+        </h6>
+        <h6>
+        <%= @user.user_info.position %>
+        <%= @user.user_info.team %>
+        </h6>
+        <h6>
+        <%= @user.user_info.weight %>
+        <%= @user.user_info.feet %>
+        <%= @user.user_info.inches %>
+        </h6>
+        <h6>
+        <%= @user.user_info.description %>
+        </h6>
+        <% end %>
     </section>
     <% if current_student? %>
         <% if current_user?(@user) %>
@@ -16,6 +34,7 @@
             <% end %>
         <% end %>
     <% end %>
+
     
 
     

@@ -1,0 +1,23 @@
+<% provide(:title, 'Create instructor info') %>
+<h1>Create instructor info</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@instructor_info) do |f| %>
+    <%= render 'shared/instructor_info_error_messages' %>
+
+     
+
+      <%= f.label :price %>
+      <%= f.number_field :price , :step => 0.01 %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, placeholder: "more info about me..."%>
+
+
+      
+
+      <%= f.submit "Create my info", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
