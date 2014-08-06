@@ -1,8 +1,10 @@
 class UserInfosController < ApplicationController
   before_action :signed_in_user, only: [:edit, :update, :new, :create]
-  before_action :info_exist_user,  only: [:edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :right_user,   only: [:new, :create]
+  before_action :is_student, only: [:edit, :update, :new , :create]
+  before_action :info_exist_user,  only: [:update]
+  before_action :edit_info,  only: [:edit]
+  before_action :correct_user,   only: [:update]
+  before_action :right_user,   only: [:edit]
   before_action :no_info_user,   only: [:new, :create]
 
 
@@ -11,17 +13,16 @@ class UserInfosController < ApplicationController
 	end 
 
 	def create
-    if @user.user_info
+    
+    if current_user.user_info
       flash[:error] = "User info already exist!"
-      redirect_to @user
+      redirect_to current_user
     else
-		@user_info = UserInfo.create(user_info_params)
-    @user_info.user_id="0"
+    @user_info=current_user.build_user_info(user_info_params)
 			if @user_info.save
                # Handle a successful save.
-               @user.user_info=@user_info
                flash[:success] = "User info created!"
-               redirect_to @user
+               redirect_to current_user
             else
                render 'new'
             end
@@ -30,12 +31,11 @@ class UserInfosController < ApplicationController
 
     
     def update
-    @user = User.find(@user_info.user_id)
-
+      @user_info=UserInfo.find(params[:id])
 	    if @user_info.update_attributes(user_info_params)
             # Handle a successful save.
             flash[:success] = "User info updated"
-            redirect_to @user
+            redirect_to current_user
         else
             render 'new'
         end
@@ -43,6 +43,7 @@ class UserInfosController < ApplicationController
 
     
     def edit
+      @user_info=current_user.user_info
     end
 
 
@@ -75,11 +76,20 @@ class UserInfosController < ApplicationController
     end
 
     def no_info_user
+      @user=current_user
       redirect_to(root_url) if @user.user_info
     end
 
     def info_exist_user
       redirect_to(root_url) unless UserInfo.exists?(params[:id])
+    end
+
+    def edit_info
+      redirect_to(root_url) unless current_user.user_info
+    end
+
+    def is_student
+      redirect_to(root_url) if current_user.attributes['facility']
     end
 
 

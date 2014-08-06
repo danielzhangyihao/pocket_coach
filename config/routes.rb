@@ -1,9 +1,6 @@
 SampleApp::Application.routes.draw do
-  resources :users do
-    member do
-      resources :user_infos, only: [:edit, :new, :create,:update]
-    end
-  end 
+  resources :users 
+  resources :user_infos, only: [:edit, :new, :create,:update]
   resources :instructors 
   resources :sessions, only: [:new, :create, :destroy]
   root  'static_pages#home'
