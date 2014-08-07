@@ -1,0 +1,13 @@
+<% provide(:title, @company.name) %>
+<% if @company.company_info %>
+	<%= @company.company_info.email %>
+	<%= @company.company_info.address %>
+	<%= @company.company_info.telephone %>
+	<%= @company.company_info.price %>
+	<%= @company.company_info.email %>
+<% end %>
+
+<ul class="users">
+  <%= render @instructors %>
+</ul>
+

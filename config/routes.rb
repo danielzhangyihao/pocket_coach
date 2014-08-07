@@ -5,6 +5,7 @@ SampleApp::Application.routes.draw do
   resources :instructor_infos, only: [:edit, :new, :create,:update]
   resources :company_infos, only: [:edit, :new, :create,:update]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :companies, only: [:index, :show]
   root  'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
