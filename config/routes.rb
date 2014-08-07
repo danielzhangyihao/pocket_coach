@@ -16,7 +16,7 @@ SampleApp::Application.routes.draw do
   
   namespace :facility_admin do
     get '', to: 'dashboard#index', as: '/'
-    resources :instructors, only: [:edit, :destroy]
+    #resources :instructors, only: [:edit, :destroy]
   end
 
   # match '/coach', to:'users#coach', via: 'get'

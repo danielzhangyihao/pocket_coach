@@ -6,6 +6,9 @@ class FacilityAdmin::DashboardController < ApplicationController
   def index
   	company=current_user.company
   	@instructors= company.instructors
+    if current_user.company.company_info
+       @company_info=current_user.company.company_info
+    end
   end
 
 

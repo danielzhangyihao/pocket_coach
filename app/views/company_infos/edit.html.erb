@@ -1,0 +1,30 @@
+<% provide(:title, 'Update company info') %>
+<h1>Update company info</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@company_info) do |f| %>
+    <%= render 'shared/company_info_error_messages' %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+
+      <%= f.label :telephone %>
+      <%= f.number_field :telephone , :step => 1 %>
+
+      <%= f.label :price, "default price" %>
+      <%= f.number_field :price, :step => 0.01 %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, placeholder: "more info about the company..."%>
+
+
+      
+
+      <%= f.submit "Update company info", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
