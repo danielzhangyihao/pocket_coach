@@ -1,11 +1,55 @@
 <% provide(:title, @company.name) %>
+<h1>
+<%= @company.name %>
+</h1>
+
+<h5>
+	company information
+</h5>
 <% if @company.company_info %>
-	<%= @company.company_info.email %>
+<h3 class="float-left">
+	Company email:
+</h3>
+
+<h4 class="float-left company-email">
+<%= @company.company_info.email %>
+</h4>
+<div class="clear"></div>
+
+<h3 class="float-left">
+	Company address:
+</h3>
+<h4 class="float-left company-email">
 	<%= @company.company_info.address %>
+</h4>
+<div class="clear"></div>
+
+<h3 class="float-left">
+	Company telephone:
+</h3>
+<h4 class="float-left company-email">
 	<%= @company.company_info.telephone %>
-	<%= @company.company_info.price %>
-	<%= @company.company_info.email %>
+</h4>
+<div class="clear"></div>
+
+<h3 class="float-left">
+	Company default price:
+</h3>
+<h4 class="float-left company-email">
+	$ <%= @company.company_info.price %>
+</h4>
+<div class="clear"></div>
+
+<h3 class="float-left">
+	Company description:
+</h3>
+<h4 class="float-left company-email">
+	<%= @company.company_info.description %>
+</h4>
+<div class="clear"></div>
 <% end %>
+
+<h1>all instructors</h1>
 
 <ul class="users">
   <%= render @instructors %>

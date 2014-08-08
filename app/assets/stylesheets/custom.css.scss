@@ -85,6 +85,21 @@ p {
   line-height: 1.7em;
 }
 
+h3{
+  font-size: 1.1em;
+
+}
+
+h4{
+  font-size:1.0em;
+  font-weight: 400;
+}
+
+h5{
+  font-size: 1.1em;
+  text-decoration: underline;
+
+}
 
 /* header */
 
@@ -245,4 +260,22 @@ input {
 
 #create-company{
   display: none;
+}
+
+/*instructor info*/
+.instructor-info-block{
+  margin-top: 15px;
+}
+
+/*company show page*/
+.clear{
+  clear: both;
+}
+
+.float-left {
+  float: left;
+}
+
+h4.float-left.company-email{
+  margin-left: 10px;
 }

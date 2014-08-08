@@ -1,28 +1,28 @@
 <% provide(:title, @instructor.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
+  <aside class="span7">
+    <section class="instructor-info">
       <h1>
-        <%= gravatar_for @instructor %>
+        <%= gravatar_for @instructor, size:160 %>
         <%= @instructor.name %> 
 
       </h1>
-       <h2>
-      	<%= @instructor.facility %> 
-      </h2>
-
+       <h3>
+        Company: <%= link_to @instructor.company.name, @instructor.company %>
+      </h3>
+      <div class="instructor-info-block">
       <% if @instructor.instructor_info %>
         <h6>
-        $ <%= @instructor.instructor_info.price %>
+        Price: $ <%= @instructor.instructor_info.price %>
         </h6>
         <h6>
-        <%= @instructor.instructor_info.description %>
+        Description: <%= @instructor.instructor_info.description %>
         </h6>
         <% end %>
-        
+      </div>
+      </section>
 
 
-    </section>
     <% if !current_student? %>
         <% if current_user?(@instructor) %>
             <% if instructor_has_info? %>
