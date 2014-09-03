@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
     has_secure_password
     validates :password, length: { minimum: 6 }
     has_one :user_info, dependent: :destroy
+    has_many :videos, :as => :people , dependent: :destroy
   
 
     def User.new_remember_token

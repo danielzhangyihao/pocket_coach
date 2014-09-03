@@ -1,4 +1,6 @@
 SampleApp::Application.routes.draw do
+  match '/panda/authorize_upload', :to => 'panda#authorize_upload', via: 'post'
+  resources :videos
   resources :users 
   resources :user_infos, only: [:edit, :new, :create,:update]
   resources :instructors 
@@ -14,7 +16,6 @@ SampleApp::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/instructorsignup',  to: 'instructors#new',   via: 'get'
-  
   namespace :facility_admin do
     get '', to: 'dashboard#index', as: '/'
     #resources :instructors, only: [:edit, :destroy]

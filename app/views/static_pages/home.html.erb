@@ -6,8 +6,11 @@
     This is the home page for Pocket Coach
     
   </h2>
+  <% if signed_in? %>
+  <% else %>
   <h2>Sign up now!</h2>
   <%= link_to "Students", signup_path, class: "btn btn-large btn-primary" %>
   <%= link_to "Instructors", instructorsignup_path, class: "btn btn-large btn-primary" %>
+  <% end %>
 </div>
 

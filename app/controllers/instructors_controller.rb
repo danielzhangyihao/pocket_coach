@@ -5,6 +5,8 @@ class InstructorsController < ApplicationController
 
   def show
     @instructor = Instructor.find(params[:id])
+    @videos = @instructor.videos.paginate(page: params[:page])
+
   end
 
   def new

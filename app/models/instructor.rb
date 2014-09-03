@@ -13,7 +13,7 @@ class Instructor < ActiveRecord::Base
    belongs_to :company
    validates :company_id, presence: true
    has_one:instructor_info, dependent: :destroy
-   
+   has_many :videos, :as => :people , dependent: :destroy
 
 
 

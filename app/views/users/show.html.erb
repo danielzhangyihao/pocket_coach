@@ -34,9 +34,21 @@
             <% end %>
         <% end %>
     <% end %>
-
-    
-
-    
-  </aside>
+</aside>
+<div class="clear"></div>
+  <div class="video-people">
+  <% if @user.videos.any? %>
+         <div class="video-count">Videos (<%= @user.videos.count %>)</div>
+         <% if current_user?(@user) %>
+         <%= link_to "add new video", new_video_path, class: "add-video" %>
+         <% end %>
+         <div class="clear"></div>
+          <%= render @videos %>
+          <%= will_paginate @videos %>
+  <% else %>
+         <% if current_user?(@user) %>
+         <%= link_to "add new video", new_video_path, class: "add-video-none" %>
+         <% end %>
+  <% end %>
+  </div>
 </div>

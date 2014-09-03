@@ -1,0 +1,23 @@
+
+<div class='each-video'>
+
+<% if video.panda_video.encodings['h264'].success? %>
+  
+  <h3><%= video.title %></h3>
+  
+  <!-- HTML5 player -->
+  <video id="movie" width="<%= video.panda_video.encodings['h264'].width %>" height="<%= video.panda_video.encodings['h264'].height %>" preload="none" 
+    poster="<%= video.panda_video.encodings['h264'].screenshots.first %>" controls>
+    <source src="<%= video.panda_video.encodings['h264'].url %>" type="video/mp4">
+  </video>
+
+<% else %>
+
+<div class='progress progress-striped progress-success'>
+  <span id="progress-bar" class='bar' style="width: <%= video.panda_video.encodings['h264'].encoding_progress.to_i %>%"><%= video.panda_video.encodings['h264'].encoding_progress %> %</span>
+</div>
+
+The video is still processing, refresh the page in a few seconds.
+<% end %>
+
+</div>
