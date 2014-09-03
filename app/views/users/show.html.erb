@@ -8,20 +8,20 @@
       </h1>
         <% if @user.user_info %>
         <h6>
-        <%= @user.user_info.school %>
-        <%= @user.user_info.year %>
+        School : <%= @user.user_info.school %>
+        Year : <%= @user.user_info.year %>
         </h6>
         <h6>
-        <%= @user.user_info.position %>
-        <%= @user.user_info.team %>
+        Position : <%= @user.user_info.position %>
+        Team : <%= @user.user_info.team %>
         </h6>
         <h6>
-        <%= @user.user_info.weight %>
-        <%= @user.user_info.feet %>
-        <%= @user.user_info.inches %>
+        weight : <%= @user.user_info.weight %>
+        Height : <%= @user.user_info.feet %> feet
+        <%= @user.user_info.inches %> inches
         </h6>
         <h6>
-        <%= @user.user_info.description %>
+        Description : <%= @user.user_info.description %>
         </h6>
         <% end %>
     </section>
@@ -35,6 +35,8 @@
         <% end %>
     <% end %>
 </aside>
+</div>
+<hr>
 <div class="clear"></div>
   <div class="video-people">
   <% if @user.videos.any? %>
@@ -51,4 +53,3 @@
          <% end %>
   <% end %>
   </div>
-</div>
